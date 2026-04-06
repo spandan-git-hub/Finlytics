@@ -6,10 +6,13 @@ export const useUIStore = create((set) => ({
 	search: '',
 	categoryFilter: 'all',
 	typeFilter: 'all',
+	isSidebarOpen: false,
 
-	setActivePage: (activePage) => set({ activePage }),
+	setActivePage: (activePage) => set({ activePage, isSidebarOpen: false }),
 	setRole: (role) => set({ role }),
 	setSearch: (search) => set({ search }),
 	setCategoryFilter: (categoryFilter) => set({ categoryFilter }),
 	setTypeFilter: (typeFilter) => set({ typeFilter }),
+	setSidebarOpen: (isSidebarOpen) => set({ isSidebarOpen }),
+	toggleSidebar: () => set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
 }))

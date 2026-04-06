@@ -1,7 +1,20 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { formatCurrency } from '../../utils/formatCurrency'
+import EmptyState from '../../components/ui/EmptyState'
 
-export default function BalanceChart({ monthlySeries }) {
+export default function BalanceChart({ monthlySeries, hasTransactions }) {
+	if (!hasTransactions) {
+		return (
+			<article className="rounded-2xl bg-[#f6f3f2] p-6 xl:col-span-8">
+				<EmptyState
+					title="No balance history yet"
+					description="Add transactions to generate monthly trend lines."
+					icon="monitoring"
+				/>
+			</article>
+		)
+	}
+
 	return (
 		<article className="rounded-2xl bg-[#f6f3f2] p-6 xl:col-span-8">
 			<div className="mb-4">
@@ -9,7 +22,7 @@ export default function BalanceChart({ monthlySeries }) {
 				<p className="text-sm text-[#424655]">6-month growth trajectory</p>
 			</div>
 
-			<div className="h-72 w-full">
+			<div className="h-64 w-full sm:h-72">
 				<ResponsiveContainer>
 					<LineChart data={monthlySeries}>
 						<XAxis dataKey="month" stroke="#737687" />

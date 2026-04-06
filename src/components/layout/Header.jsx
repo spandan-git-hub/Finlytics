@@ -7,13 +7,23 @@ export default function Header() {
 	const role = useUIStore((state) => state.role)
 	const setSearch = useUIStore((state) => state.setSearch)
 	const setRole = useUIStore((state) => state.setRole)
+	const toggleSidebar = useUIStore((state) => state.toggleSidebar)
 
 	return (
-		<header className="sticky top-0 z-40 flex items-center justify-between bg-[#fcf9f8]/85 px-8 py-3 backdrop-blur-xl">
-			<div className="flex items-center gap-8">
+		<header className="sticky top-0 z-40 flex items-center justify-between bg-[#fcf9f8]/85 px-4 py-3 backdrop-blur-xl sm:px-6 lg:px-8">
+			<div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
+				<button
+					type="button"
+					onClick={toggleSidebar}
+					className="flex h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] lg:hidden"
+					aria-label="Toggle sidebar"
+				>
+					<span className="material-symbols-outlined">menu</span>
+				</button>
+
 				<div>
 					<p className="text-xs font-semibold uppercase tracking-widest text-[#424655]/70">Finlytics</p>
-					<h2 className="text-lg font-bold text-[#1c1b1b]">{PAGE_TITLES[activePage]}</h2>
+					<h2 className="text-base font-bold text-[#1c1b1b] sm:text-lg">{PAGE_TITLES[activePage]}</h2>
 				</div>
 
 				<label className="relative hidden md:block">
@@ -24,12 +34,12 @@ export default function Header() {
 						value={search}
 						onChange={(event) => setSearch(event.target.value)}
 						placeholder="Search transactions..."
-						className="w-72 rounded-xl border border-transparent bg-[#f0eded] py-2 pl-10 pr-4 text-sm outline-none ring-[#0050d6]/25 transition focus:ring-2"
+						className="w-56 rounded-xl border border-transparent bg-[#f0eded] py-2 pl-10 pr-4 text-sm outline-none ring-[#0050d6]/25 transition focus:ring-2 lg:w-72"
 					/>
 				</label>
 			</div>
 
-			<div className="flex items-center gap-4">
+			<div className="flex items-center gap-2 sm:gap-4">
 				<div className="hidden items-center gap-4 md:flex">
 					<button
 						type="button"
@@ -51,10 +61,19 @@ export default function Header() {
 					</button>
 				</div>
 
-				<button type="button" className="flex h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1]">
+				<select
+					className="rounded-lg border border-transparent bg-[#f0eded] px-2 py-1 text-xs font-semibold text-[#424655] outline-none ring-[#0050d6]/25 focus:ring-2 md:hidden"
+					value={role}
+					onChange={(event) => setRole(event.target.value)}
+				>
+					<option value="viewer">Viewer</option>
+					<option value="admin">Admin</option>
+				</select>
+
+				<button type="button" className="hidden h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] sm:flex">
 					<span className="material-symbols-outlined">notifications</span>
 				</button>
-				<button type="button" className="flex h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1]">
+				<button type="button" className="hidden h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] sm:flex">
 					<span className="material-symbols-outlined">settings</span>
 				</button>
 			</div>

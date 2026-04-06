@@ -1,8 +1,19 @@
 import Card from '../../components/ui/Card'
 import { formatDate } from '../../utils/formatDate'
 import { formatCurrency } from '../../utils/formatCurrency'
+import EmptyState from '../../components/ui/EmptyState'
 
 export default function RecentTransactions({ transactions }) {
+	if (transactions.length === 0) {
+		return (
+			<EmptyState
+				title="No recent transactions"
+				description="When activity is recorded, this section will list the latest entries."
+				icon="schedule"
+			/>
+		)
+	}
+
 	return (
 		<Card className="overflow-hidden p-0">
 			<div className="border-b border-[#e5e2e1] px-6 py-4">
@@ -11,14 +22,14 @@ export default function RecentTransactions({ transactions }) {
 			</div>
 
 			<div className="overflow-x-auto">
-				<table className="min-w-full text-left text-sm">
+				<table className="min-w-full text-left text-xs sm:text-sm">
 					<thead>
 						<tr className="text-xs uppercase tracking-widest text-[#424655]">
 							<th className="px-6 py-4">Date</th>
 							<th className="px-6 py-4">Description</th>
-							<th className="px-6 py-4">Category</th>
+							<th className="hidden px-6 py-4 md:table-cell">Category</th>
 							<th className="px-6 py-4 text-right">Amount</th>
-							<th className="px-6 py-4 text-right">Status</th>
+							<th className="hidden px-6 py-4 text-right sm:table-cell">Status</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -29,12 +40,12 @@ export default function RecentTransactions({ transactions }) {
 									<p className="font-semibold">{transaction.merchant}</p>
 									<p className="text-xs text-[#424655]">{transaction.note}</p>
 								</td>
-								<td className="px-6 py-4 text-[#424655]">{transaction.category}</td>
+								<td className="hidden px-6 py-4 text-[#424655] md:table-cell">{transaction.category}</td>
 								<td className={`px-6 py-4 text-right font-bold ${transaction.type === 'income' ? 'text-emerald-700' : 'text-[#1c1b1b]'}`}>
 									{transaction.type === 'income' ? '+' : '-'}
 									{formatCurrency(transaction.amount)}
 								</td>
-								<td className="px-6 py-4 text-right">
+								<td className="hidden px-6 py-4 text-right sm:table-cell">
 									<span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
 										{transaction.status}
 									</span>

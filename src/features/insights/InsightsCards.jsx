@@ -1,15 +1,26 @@
 import Button from '../../components/ui/Button'
 import { formatCurrency } from '../../utils/formatCurrency'
+import EmptyState from '../../components/ui/EmptyState'
 
-export default function InsightsCards({ insights }) {
+export default function InsightsCards({ insights, hasTransactions }) {
+	if (!hasTransactions) {
+		return (
+			<EmptyState
+				title="No insights available"
+				description="Add transaction data to unlock category, savings, and trend insights."
+				icon="insights"
+			/>
+		)
+	}
+
 	return (
 		<section className="grid grid-cols-1 gap-6 lg:grid-cols-12">
 			<article className="rounded-[28px] bg-white p-7 shadow-[0px_10px_40px_rgba(28,27,27,0.05)] lg:col-span-7">
 				<p className="text-xs font-bold uppercase tracking-widest text-[#424655]">Top Category</p>
-				<h4 className="mt-2 text-3xl font-black tracking-tight">{insights.topCategory.category}</h4>
+				<h4 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">{insights.topCategory.category}</h4>
 				<p className="mt-1 text-sm text-[#424655]">Highest spending segment this month</p>
 
-				<p className="mt-8 text-5xl font-black tracking-tight">{formatCurrency(insights.topCategory.value)}</p>
+				<p className="mt-8 text-4xl font-black tracking-tight sm:text-5xl">{formatCurrency(insights.topCategory.value)}</p>
 				<p className="mt-2 text-sm text-[#424655]">
 					Share of total expenses: {Math.round(insights.topCategory.percent)}%
 				</p>
