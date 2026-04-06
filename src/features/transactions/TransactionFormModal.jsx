@@ -79,13 +79,13 @@ export default function TransactionFormModal({
 		<Modal isOpen={isOpen} title={modalTitle} onClose={onClose}>
 			<form className="space-y-4" onSubmit={handleSubmit}>
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-					<label className="space-y-1">
-						<span className="text-xs font-semibold uppercase tracking-widest text-[#424655]">Date</span>
+					<label className="block space-y-2">
+						<span className="block text-xs font-semibold uppercase tracking-widest text-[#424655]">Date</span>
 						<Input type="date" value={form.date} onChange={(event) => updateField('date', event.target.value)} required />
 					</label>
 
-					<label className="space-y-1">
-						<span className="text-xs font-semibold uppercase tracking-widest text-[#424655]">Amount</span>
+					<label className="block space-y-2">
+						<span className="block text-xs font-semibold uppercase tracking-widest text-[#424655]">Amount</span>
 						<Input
 							type="number"
 							min="0.01"
@@ -98,19 +98,19 @@ export default function TransactionFormModal({
 					</label>
 				</div>
 
-				<label className="space-y-1 block">
-					<span className="text-xs font-semibold uppercase tracking-widest text-[#424655]">Merchant</span>
+				<label className="block space-y-2">
+					<span className="block text-xs font-semibold uppercase tracking-widest text-[#424655]">Merchant</span>
 					<Input value={form.merchant} onChange={(event) => updateField('merchant', event.target.value)} placeholder="Merchant name" required />
 				</label>
 
-				<label className="space-y-1 block">
-					<span className="text-xs font-semibold uppercase tracking-widest text-[#424655]">Note</span>
+				<label className="block space-y-2">
+					<span className="block text-xs font-semibold uppercase tracking-widest text-[#424655]">Note</span>
 					<Input value={form.note} onChange={(event) => updateField('note', event.target.value)} placeholder="Reason or context" required />
 				</label>
 
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-					<label className="space-y-1">
-						<span className="text-xs font-semibold uppercase tracking-widest text-[#424655]">Category</span>
+					<label className="block space-y-2">
+						<span className="block text-xs font-semibold uppercase tracking-widest text-[#424655]">Category</span>
 						<Select value={form.category} onChange={(event) => updateField('category', event.target.value)}>
 							{categoryOptions.map((category) => (
 								<option key={category} value={category}>
@@ -120,8 +120,8 @@ export default function TransactionFormModal({
 						</Select>
 					</label>
 
-					<label className="space-y-1">
-						<span className="text-xs font-semibold uppercase tracking-widest text-[#424655]">Type</span>
+					<label className="block space-y-2">
+						<span className="block text-xs font-semibold uppercase tracking-widest text-[#424655]">Type</span>
 						<Select value={form.type} onChange={(event) => updateField('type', event.target.value)}>
 							<option value="income">Income</option>
 							<option value="expense">Expense</option>

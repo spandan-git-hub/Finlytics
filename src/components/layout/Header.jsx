@@ -8,6 +8,7 @@ export default function Header() {
 	const setSearch = useUIStore((state) => state.setSearch)
 	const setRole = useUIStore((state) => state.setRole)
 	const toggleSidebar = useUIStore((state) => state.toggleSidebar)
+	const showSearch = activePage === 'transactions'
 
 	return (
 		<header className="sticky top-0 z-40 flex items-center justify-between bg-[#fcf9f8]/85 px-4 py-3 backdrop-blur-xl sm:px-6 lg:px-8">
@@ -26,17 +27,19 @@ export default function Header() {
 					<h2 className="text-base font-bold text-[#1c1b1b] sm:text-lg">{PAGE_TITLES[activePage]}</h2>
 				</div>
 
-				<label className="relative hidden md:block">
-					<span className="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#424655]">
-						search
-					</span>
-					<input
-						value={search}
-						onChange={(event) => setSearch(event.target.value)}
-						placeholder="Search transactions..."
-						className="w-56 rounded-xl border border-transparent bg-[#f0eded] py-2 pl-10 pr-4 text-sm outline-none ring-[#0050d6]/25 transition focus:ring-2 lg:w-72"
-					/>
-				</label>
+				{showSearch ? (
+					<label className="relative hidden md:block">
+						<span className="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#424655]">
+							search
+						</span>
+						<input
+							value={search}
+							onChange={(event) => setSearch(event.target.value)}
+							placeholder="Search transactions..."
+							className="w-56 rounded-xl border border-transparent bg-[#f0eded] py-2 pl-10 pr-4 text-sm outline-none ring-[#0050d6]/25 transition focus:ring-2 lg:w-72"
+						/>
+					</label>
+				) : null}
 			</div>
 
 			<div className="flex items-center gap-2 sm:gap-4">
