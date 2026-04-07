@@ -7,21 +7,11 @@ export default function Header() {
 	const role = useUIStore((state) => state.role)
 	const setSearch = useUIStore((state) => state.setSearch)
 	const setRole = useUIStore((state) => state.setRole)
-	const toggleSidebar = useUIStore((state) => state.toggleSidebar)
 	const showSearch = activePage === 'transactions'
 
 	return (
 		<header className="sticky top-0 z-40 flex items-center justify-between bg-[#fcf9f8]/85 px-4 py-3 backdrop-blur-xl sm:px-6 lg:px-8">
 			<div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
-				<button
-					type="button"
-					onClick={toggleSidebar}
-					className="flex h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] lg:hidden"
-					aria-label="Toggle sidebar"
-				>
-					<span className="material-symbols-outlined">menu</span>
-				</button>
-
 				<div>
 					<p className="text-xs font-semibold uppercase tracking-widest text-[#424655]/70">Finlytics</p>
 					<h2 className="text-base font-bold text-[#1c1b1b] sm:text-lg">{PAGE_TITLES[activePage]}</h2>
@@ -73,10 +63,16 @@ export default function Header() {
 					<option value="admin">Admin</option>
 				</select>
 
-				<button type="button" className="hidden h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] sm:flex">
+				<button
+					type="button"
+					className="hidden h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] sm:flex"
+				>
 					<span className="material-symbols-outlined">notifications</span>
 				</button>
-				<button type="button" className="hidden h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] sm:flex">
+				<button
+					type="button"
+					className="hidden h-10 w-10 items-center justify-center rounded-full text-[#424655] hover:bg-[#e5e2e1] sm:flex"
+				>
 					<span className="material-symbols-outlined">settings</span>
 				</button>
 			</div>

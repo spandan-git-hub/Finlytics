@@ -1,5 +1,6 @@
 import Sidebar from './Sidebar'
 import Header from './Header'
+import MobileBottomNav from './MobileBottomNav'
 
 export default function AppLayout({ children }) {
 	return (
@@ -7,8 +8,9 @@ export default function AppLayout({ children }) {
 			<Sidebar />
 			<div className="min-h-screen lg:ml-64">
 				<Header />
-				<main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+				<main className="mx-auto w-full max-w-7xl px-4 py-6 pb-24 sm:px-6 lg:px-8 lg:pb-8">{children}</main>
 			</div>
+			<MobileBottomNav />
 		</div>
 	)
 }

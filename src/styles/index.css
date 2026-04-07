@@ -13,7 +13,7 @@
 body {
 	margin: 0;
 	min-height: 100vh;
-	background: #fcf9f8;
+	background: radial-gradient(circle at top right, #ffffff 0%, #fcf9f8 58%, #f5f0ee 100%);
 	color: #1c1b1b;
 }
 
